@@ -61,4 +61,4 @@
 |---|---|
 | 公网商店 | http://119.3.127.104/ |
 | API 健康检查 | http://119.3.127.104/api/health |
-| Tailscale | （部署后由 `tailscale ip -4` 报告） |
+| Tailscale | http://100.90.231.14/ |
