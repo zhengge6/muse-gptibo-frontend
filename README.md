@@ -62,3 +62,7 @@ public/assets/      favicon、muse-logo、Geist 字体
 ## 说明
 
 本仓库为学习与自用适配；真实支付需自行配置 Alipay / Cloudflare Workers 或 Go 后端密钥。详见上游 `ADAPT.md`（若同机有 `/workspace/gptibo`）或本仓库 `docs/ADAPT.md`。
+
+## Notes
+
+- [Designing with AI 资源清单](docs/design-ai-resources.md)
