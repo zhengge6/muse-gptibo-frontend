@@ -1,8 +1,13 @@
 # Muse · GPTibo 前端（React + Vite）
 
-私有仓库：[zhengge6/muse-gptibo-frontend](https://github.com/zhengge6/muse-gptibo-frontend)
+公开仓库：[zhengge6/muse-gptibo-frontend](https://github.com/zhengge6/muse-gptibo-frontend)
 
 视觉复刻 [muse.gptibo.com](https://muse.gptibo.com/) 商店（Muse AI / Gemini 切换、结账卡、订单页），并预留与 [CoolkHz/gptibo](https://github.com/CoolkHz/gptibo) 兼容的 `API_BASE` 调用。
+
+## Designing with AI 资源清单
+
+见 **[docs/design-ai-resources.md](docs/design-ai-resources.md)**（modulify / godly / 60fps 等 15 条灵感收藏）。
+
 
 ## 本地开发
 
@@ -62,7 +67,3 @@ public/assets/      favicon、muse-logo、Geist 字体
 ## 说明
 
 本仓库为学习与自用适配；真实支付需自行配置 Alipay / Cloudflare Workers 或 Go 后端密钥。详见上游 `ADAPT.md`（若同机有 `/workspace/gptibo`）或本仓库 `docs/ADAPT.md`。
-
-## Notes
-
-- [Designing with AI 资源清单](docs/design-ai-resources.md)
