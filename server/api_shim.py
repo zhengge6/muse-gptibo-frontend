@@ -85,10 +85,9 @@ def json_response(handler: BaseHTTPRequestHandler, status: int, payload: dict) -
     handler.send_header("Access-Control-Allow-Headers", "Content-Type")
     handler.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
     # 简易买家 cookie，便于 GET /api/orders 按会话列出
-    if "buyer=" not in (handler.headers.get("Cookie") or ""):
-        token = uuid.uuid4().hex
+    if getattr(handler, "_set_buyer_cookie", False) or "buyer=" not in (handler.headers.get("Cookie") or ""):
+        token = getattr(handler, "_buyer", None) or uuid.uuid4().hex
         handler.send_header("Set-Cookie", f"buyer={token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=31536000")
-        handler._buyer = token  # type: ignore[attr-defined]
     handler.end_headers()
     handler.wfile.write(body)
 
@@ -99,7 +98,13 @@ def buyer_id(handler: BaseHTTPRequestHandler) -> str:
         part = part.strip()
         if part.startswith("buyer="):
             return part.split("=", 1)[1].strip() or "anonymous"
-    return getattr(handler, "_buyer", "anonymous")
+    # 无 cookie 时提前生成，保证本请求写入与 Set-Cookie 一致
+    token = getattr(handler, "_buyer", None)
+    if not token:
+        token = uuid.uuid4().hex
+        handler._buyer = token  # type: ignore[attr-defined]
+        handler._set_buyer_cookie = True  # type: ignore[attr-defined]
+    return token
 
 
 def read_json(handler: BaseHTTPRequestHandler) -> dict:
